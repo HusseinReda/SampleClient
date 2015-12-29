@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.imenu.sampleclient2.Global;
 import com.imenu.sampleclient2.R;
 
 import org.springframework.http.converter.StringHttpMessageConverter;
@@ -32,7 +33,7 @@ public class HttpGetRequestActivity extends AppCompatActivity {
     private class HttpGetRequest extends AsyncTask<Void, Void, String> {
         @Override
         protected String doInBackground(Void... params) {
-                final String url = "http://imenu.elasticbeanstalk.com/";
+                final String url = getString(R.string.url);
                 RestTemplate restTemplate = new RestTemplate();
                 restTemplate.getMessageConverters().add(new StringHttpMessageConverter());
                 String result = restTemplate.getForObject(url, String.class);

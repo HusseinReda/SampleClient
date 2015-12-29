@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">SampleClient2</string>
+    <string name="url">http://imenu.elasticbeanstalk.com/</string>
+
 </resources>
