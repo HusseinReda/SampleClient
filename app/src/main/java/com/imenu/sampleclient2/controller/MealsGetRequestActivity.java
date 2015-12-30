@@ -1,39 +1,36 @@
 package com.imenu.sampleclient2.controller;
 
+import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.imenu.sampleclient2.R;
 import com.imenu.sampleclient2.model.Meal;
+import com.imenu.sampleclient2.model.MenuGenerator;
 
 import org.springframework.http.converter.StringHttpMessageConverter;
+import org.springframework.http.converter.json.GsonHttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by __Hussein__ on 12/29/2015.
  */
 public class MealsGetRequestActivity extends AppCompatActivity {
-
+    final private Context context = this;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_main);
-        //Button sendingButton = (Button) findViewById(R.id.sendingButton);
-        //onCreate();
-        //sendingButton.setOnClickListener(new View.OnClickListener() {
-        //    @Override
-        //    public void onClick(View view) {
-        //        new HttpGetRequest().execute();
-        //        //Toast.makeText(getApplicationContext(), "7amada bel ganzabeel", Toast.LENGTH_LONG).show();
-        //    }
-        //});
+        setContentView(R.layout.activity_meals);
 
     }
     @Override
@@ -41,19 +38,31 @@ public class MealsGetRequestActivity extends AppCompatActivity {
         super.onStart();
         new MealsGetRequestTask().execute();
     }
-    private class MealsGetRequestTask extends AsyncTask<Void, Void, Meal[] > {
+    private class MealsGetRequestTask extends AsyncTask<Void, Void, ArrayList<Meal> > {
         @Override
-        protected Meal[]  doInBackground(Void... params) {
+        protected ArrayList<Meal>  doInBackground(Void... params) {
             final String url = getString(R.string.url)+"/meals";
             RestTemplate restTemplate = new RestTemplate();
-            restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
-            Meal[] meals= restTemplate.getForObject(url, Meal[].class);
+            restTemplate.getMessageConverters().add(new GsonHttpMessageConverter());
+            ArrayList<Meal> meals= restTemplate.getForObject(url, ArrayList.class);
+
             return meals;
         }
 
         @Override
-        protected void onPostExecute(Meal[] meals) {
-            Toast.makeText(getApplicationContext(), "yes", Toast.LENGTH_LONG).show();
+        protected void onPostExecute(ArrayList<Meal> meals) {
+            LinearLayout menuActivity = (LinearLayout) findViewById(R.id.activity_meals);
+            ArrayList<Meal> meals_mocked = new ArrayList<Meal> ();
+            meals_mocked.add(new Meal ("Far5a",1)  );
+            meals_mocked.add(new Meal ("Batta",1)  );
+            meals_mocked.add(new Meal ("Wezza",1)  );
+            meals_mocked.add(new Meal ("Shawerma",1)  );
+            meals_mocked.add(new Meal ("btngana",1)  );
+            meals_mocked.add(new Meal ("Btngan ma7rooo2",1)  );
+            meals_mocked.add(new Meal ("Btngan maslooo2",1)  );
+            MenuGenerator menuGenerator = new MenuGenerator(meals_mocked, (MealsGetRequestActivity) context) ;
+            RelativeLayout menuView = menuGenerator.getView();
+            menuActivity.addView( menuView);
         }
 
     }

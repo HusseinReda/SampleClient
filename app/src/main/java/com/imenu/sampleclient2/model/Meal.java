@@ -6,13 +6,9 @@ package com.imenu.sampleclient2.model;
 public class Meal {
 
     private long id;
-
     private int price;
-
     private String name;
-
     public Meal(){}
-
     public Meal(String name, int price) {
         this.price = price;
         this.name = name;
@@ -36,4 +32,5 @@ public class Meal {
         this.name = value;
     }
 }
+
 

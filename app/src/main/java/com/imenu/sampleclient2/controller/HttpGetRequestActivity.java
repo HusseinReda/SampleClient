@@ -1,5 +1,7 @@
 package com.imenu.sampleclient2.controller;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,20 +17,21 @@ import org.springframework.http.converter.json.MappingJackson2HttpMessageConvert
 import org.springframework.web.client.RestTemplate;
 
 public class HttpGetRequestActivity extends AppCompatActivity {
-
+    final Context context = this;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Button sendingButton = (Button) findViewById(R.id.sendingButton);
+
         sendingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new HttpGetRequest().execute();
-                //Toast.makeText(getApplicationContext(), "7amada bel ganzabeel", Toast.LENGTH_LONG).show();
+//                new HttpGetRequest().execute();
+                Intent intent = new Intent(context,MealsGetRequestActivity.class);
+                startActivity(intent);
             }
         });
-
     }
     private class HttpGetRequest extends AsyncTask<Void, Void, String> {
         @Override

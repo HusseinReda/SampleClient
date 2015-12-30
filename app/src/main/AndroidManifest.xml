@@ -13,8 +13,13 @@
         <activity android:name=".controller.HttpGetRequestActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".controller.MealsGetRequestActivity">
+
         </activity>
 
     </application>

@@ -1,5 +1,6 @@
 package com.imenu.sampleclient2;
 
+import com.imenu.sampleclient2.model.Meal;
 import com.imenu.sampleclient2.model.Order;
 
 import java.util.List;
@@ -10,6 +11,15 @@ import java.util.List;
 public class Global {
     static private int tableNumber;
     static private List<Order> orders;
+    static private Meal[] meals;
+
+    public static void setMeals(Meal[] meals) {
+        Global.meals = meals;
+    }
+
+    public static Meal[] getMeals() {
+        return meals;
+    }
 
     public static void setTableNumber(int tableNumber) {
         Global.tableNumber = tableNumber;
