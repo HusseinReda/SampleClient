@@ -42,16 +42,16 @@ public class MealsGetRequestActivity extends AppCompatActivity {
     private class MealsGetRequestTask extends AsyncTask<Void, Void, Meal[] > {
         @Override
         protected Meal[]  doInBackground(Void... params) {
-            final String url = getString(R.string.url)+"/meals";
-            RestTemplate restTemplate = new RestTemplate();
-//            GsonHttpMessageConverter messageConverter = new GsonHttpMessageConverter();
-//            List<MediaType> supportedMediaTypes = new ArrayList<>(1);
-//            supportedMediaTypes.add(new MediaType("Meal"));
-//            messageConverter.setSupportedMediaTypes(supportedMediaTypes);
-            restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
-            Meal[] meals= restTemplate.getForObject(url, Meal[].class);
-
-            return meals;
+      //      try {
+                final String url = getString(R.string.url)+"/meals";
+                RestTemplate restTemplate = new RestTemplate();
+                restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
+                Meal[] meals= restTemplate.getForObject(url, Meal[].class);
+                return meals;
+  //          }catch (Exception e){
+//                Toast.makeText(getApplicationContext(), "No meals Found", Toast.LENGTH_LONG).show();
+   //             return null;
+    //        }
         }
 
         @Override

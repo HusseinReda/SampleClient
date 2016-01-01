@@ -10,13 +10,27 @@
     tools:context=".controller.HttpGetRequestActivity">
 
     <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="188dp"
-        android:layout_height="96dp"
-        android:text="Send request"
-        android:id="@+id/sendingButton"
-        android:layout_row="15"
-        android:layout_column="15"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Guest"
+        android:id="@+id/guest_button"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="71dp"
+        android:height="100dp"
+        android:textSize="30dp"
+        android:width="300dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Chief"
+        android:id="@+id/chief_button"
+        android:height="100dp"
+        android:textSize="30dp"
+        android:width="300dp"
+        android:layout_marginTop="54dp"
+        android:layout_below="@+id/guest_button"
+        android:layout_alignLeft="@+id/guest_button"
+        android:layout_alignStart="@+id/guest_button" />
 </RelativeLayout>

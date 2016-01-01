@@ -22,13 +22,12 @@ public class HttpGetRequestActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Button sendingButton = (Button) findViewById(R.id.sendingButton);
+        Button sendingButton = (Button) findViewById(R.id.guest_button);
 
         sendingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                new HttpGetRequest().execute();
-                Intent intent = new Intent(context,MealsGetRequestActivity.class);
+                Intent intent = new Intent(context,TableNumbersActivity.class);
                 startActivity(intent);
             }
         });
