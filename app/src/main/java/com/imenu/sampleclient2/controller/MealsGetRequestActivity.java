@@ -15,7 +15,6 @@ import com.imenu.sampleclient2.model.Meal;
 import com.imenu.sampleclient2.model.MenuGenerator;
 
 import org.springframework.http.converter.StringHttpMessageConverter;
-import org.springframework.http.converter.json.GsonHttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 
@@ -38,21 +37,25 @@ public class MealsGetRequestActivity extends AppCompatActivity {
         super.onStart();
         new MealsGetRequestTask().execute();
     }
-    private class MealsGetRequestTask extends AsyncTask<Void, Void, ArrayList<Meal> > {
+    private class MealsGetRequestTask extends AsyncTask<Void, Void, Meal[] > {
         @Override
-        protected ArrayList<Meal>  doInBackground(Void... params) {
+        protected Meal[]  doInBackground(Void... params) {
             final String url = getString(R.string.url)+"/meals";
             RestTemplate restTemplate = new RestTemplate();
-            restTemplate.getMessageConverters().add(new GsonHttpMessageConverter());
-            ArrayList<Meal> meals= restTemplate.getForObject(url, ArrayList.class);
+//            GsonHttpMessageConverter messageConverter = new GsonHttpMessageConverter();
+//            List<MediaType> supportedMediaTypes = new ArrayList<>(1);
+//            supportedMediaTypes.add(new MediaType("Meal"));
+//            messageConverter.setSupportedMediaTypes(supportedMediaTypes);
+            restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
+            Meal[] meals= restTemplate.getForObject(url, Meal[].class);
 
             return meals;
         }
 
         @Override
-        protected void onPostExecute(ArrayList<Meal> meals) {
+        protected void onPostExecute(Meal[] meals) {
             LinearLayout menuActivity = (LinearLayout) findViewById(R.id.activity_meals);
-            ArrayList<Meal> meals_mocked = new ArrayList<Meal> ();
+            ArrayList<Meal> meals_mocked = new ArrayList<> ();
             meals_mocked.add(new Meal ("Far5a",1)  );
             meals_mocked.add(new Meal ("Batta",1)  );
             meals_mocked.add(new Meal ("Wezza",1)  );
@@ -60,7 +63,8 @@ public class MealsGetRequestActivity extends AppCompatActivity {
             meals_mocked.add(new Meal ("btngana",1)  );
             meals_mocked.add(new Meal ("Btngan ma7rooo2",1)  );
             meals_mocked.add(new Meal ("Btngan maslooo2",1)  );
-            MenuGenerator menuGenerator = new MenuGenerator(meals_mocked, (MealsGetRequestActivity) context) ;
+            //Toast.makeText(getApplicationContext(), "el length"+meals.length, Toast.LENGTH_LONG).show();
+            MenuGenerator menuGenerator = new MenuGenerator(meals, (MealsGetRequestActivity) context) ;
             RelativeLayout menuView = menuGenerator.getView();
             menuActivity.addView( menuView);
         }

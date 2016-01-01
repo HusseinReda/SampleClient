@@ -14,9 +14,9 @@ import java.util.ArrayList;
  */
 public class MenuGenerator {
 
-    private ArrayList<Meal> meals ;
+    private Meal[] meals ;
     private MealsGetRequestActivity act;
-    public MenuGenerator(ArrayList<Meal> meals, MealsGetRequestActivity act)
+    public MenuGenerator(Meal[] meals, MealsGetRequestActivity act)
     {
         this.meals=meals;
         this.act= act;
@@ -38,11 +38,11 @@ public class MenuGenerator {
 
         rel.addView(lin1);
         rel.addView(lin2);
-        for (int i=0;i<meals.size();i++){
+        for (int i=0;i<meals.length;i++){
             Button newItem = new Button(act);
             newItem.setHeight(300);
             newItem.setWidth(500);
-            newItem.setText(meals.get(i).getName());
+            newItem.setText(meals[i].getName());
             newItem.setLayoutParams( new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT , LinearLayout.LayoutParams.WRAP_CONTENT)  );
             if (i%2==0){
                 lin1.addView(newItem);
