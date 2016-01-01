@@ -42,8 +42,8 @@ public class OrderPostRequestActivity extends AppCompatActivity {
             RestTemplate restTemplate = new RestTemplate();
             restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
             restTemplate.getMessageConverters().add(new StringHttpMessageConverter());
-            List<Order> orders= Global.getOrders();
-            String response = restTemplate.postForObject(url, orders, String.class);
+            Order order= Global.getOrder();
+            String response = restTemplate.postForObject(url, order, String.class);
             return response;
         }
 

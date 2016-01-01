@@ -10,7 +10,7 @@ import java.util.List;
  */
 public class Global {
     static private int tableNumber;
-    static private List<Order> orders;
+    static private Order order;
     static private Meal[] meals;
 
     public static void setMeals(Meal[] meals) {
@@ -29,10 +29,7 @@ public class Global {
         return tableNumber;
     }
 
-    public static void addOrder(Order order){
-        orders.add(order);
-    }
-    public static List<Order> getOrders() {
-        return orders;
+    public static Order getOrder() {
+        return order;
     }
 }
