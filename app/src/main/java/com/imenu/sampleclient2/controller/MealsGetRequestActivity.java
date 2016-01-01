@@ -7,7 +7,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.Toast;
 
 import com.imenu.sampleclient2.R;
@@ -65,9 +67,8 @@ public class MealsGetRequestActivity extends AppCompatActivity {
             meals_mocked.add(new Meal ("Btngan maslooo2",1)  );
             //Toast.makeText(getApplicationContext(), "el length"+meals.length, Toast.LENGTH_LONG).show();
             MenuGenerator menuGenerator = new MenuGenerator(meals, (MealsGetRequestActivity) context) ;
-            RelativeLayout menuView = menuGenerator.getView();
-            menuActivity.addView( menuView);
+            ScrollView menu = menuGenerator.getView();
+            menuActivity.addView( menu);
         }
-
     }
 }
