@@ -8,6 +8,7 @@ public class Meal {
     private long id;
     private int price;
     private String name;
+    private String imageUrl;
     public Meal(){}
     public Meal(String name, int price) {
         this.price = price;
@@ -22,6 +23,11 @@ public class Meal {
     public long getPrice() {
         return price;
     }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
     public void setPrice(int price) {
         this.price = price;
     }
@@ -30,6 +36,10 @@ public class Meal {
     }
     public void setName(String value) {
         this.name = value;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }
 
