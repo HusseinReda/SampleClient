@@ -1,12 +1,25 @@
 package com.imenu.sampleclient2.model;
 
+import android.app.ActionBar;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.os.AsyncTask;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
+import android.widget.TextView;
 
 import com.imenu.sampleclient2.controller.HttpGetRequestActivity;
 import com.imenu.sampleclient2.controller.MealsGetRequestActivity;
 
+import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 
 /**
@@ -16,41 +29,55 @@ public class MenuGenerator {
 
     private Meal[] meals ;
     private MealsGetRequestActivity act;
+    private LinearLayout menu;
+    ButtonFormater buttonFormater ;
+    private int assyncCounter;
     public MenuGenerator(Meal[] meals, MealsGetRequestActivity act)
     {
+        assyncCounter =0;
         this.meals=meals;
         this.act= act;
+        buttonFormater = new ButtonFormater();
     }
-    public RelativeLayout getView(   )
+    public ScrollView getView(   )
     {
-        RelativeLayout rel = new RelativeLayout(act);
-        rel.setLayoutParams( new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT ,LinearLayout.LayoutParams.MATCH_PARENT ));
-        LinearLayout lin1 = new LinearLayout(act);
-        LinearLayout lin2 = new LinearLayout(act);
-        lin1.setOrientation(LinearLayout.VERTICAL);
-        lin2.setOrientation(LinearLayout.VERTICAL);
-        RelativeLayout.LayoutParams params1 = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT );
-        RelativeLayout.LayoutParams params2 = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT );
-        lin1.setLayoutParams(params1);
-        lin2.setLayoutParams(params2);
-        params1.setMargins(10,10,500,10);
-        params2.setMargins(500,10,10,10);
+        ScrollView menuContainer = new ScrollView(act);
+        menuContainer.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.MATCH_PARENT))  ;
+        menu = new LinearLayout(act);
+        menu.setOrientation(LinearLayout.VERTICAL);
+        menu.setLayoutParams( new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT)   );
 
-        rel.addView(lin1);
-        rel.addView(lin2);
         for (int i=0;i<meals.length;i++){
-            Button newItem = new Button(act);
-            newItem.setHeight(300);
-            newItem.setWidth(500);
-            newItem.setText(meals[i].getName());
-            newItem.setLayoutParams( new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT , LinearLayout.LayoutParams.WRAP_CONTENT)  );
-            if (i%2==0){
-                lin1.addView(newItem);
-            }
-            else{
-                lin2.addView(newItem);
-            }
-        }/**/
-        return rel;
+            new GetBitmapFromUrl().execute(meals[i].getImageUrl());
+        }
+        menuContainer.addView(menu);
+        return menuContainer;
     }
+    public class GetBitmapFromUrl extends AsyncTask<String,Void,Bitmap> {
+        ImageView imageView;
+        @Override
+        protected Bitmap doInBackground(String... params) {
+            try {
+                URL url = new URL(params[0]);
+                Bitmap bmp = BitmapFactory.decodeStream(url.openConnection().getInputStream());
+                return bmp;
+            } catch (IOException e) {
+                e.printStackTrace();
+                return null;
+            }
+        }
+        @Override
+        protected void onPostExecute(Bitmap bitmap) {
+            ImageView img = new ImageView(act);
+            img.setImageBitmap(bitmap);
+            Button button = new Button(act);
+            buttonFormater.setParams(img, button, meals[assyncCounter++], act);
+            menu.addView(buttonFormater.extractButton());
+        }
+
+    }
+
+
 }
