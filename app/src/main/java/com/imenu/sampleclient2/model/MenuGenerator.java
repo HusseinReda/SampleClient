@@ -30,14 +30,12 @@ public class MenuGenerator {
     private Meal[] meals ;
     private MealsGetRequestActivity act;
     private LinearLayout menu;
-    ButtonFormater buttonFormater ;
     private int assyncCounter;
     public MenuGenerator(Meal[] meals, MealsGetRequestActivity act)
     {
         assyncCounter =0;
         this.meals=meals;
         this.act= act;
-        buttonFormater = new ButtonFormater();
     }
     public ScrollView getView(   )
     {
@@ -46,8 +44,8 @@ public class MenuGenerator {
                 LinearLayout.LayoutParams.MATCH_PARENT))  ;
         menu = new LinearLayout(act);
         menu.setOrientation(LinearLayout.VERTICAL);
-        menu.setLayoutParams( new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT)   );
+        menu.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT));
 
         for (int i=0;i<meals.length;i++){
             new GetBitmapFromUrl().execute(meals[i].getImageUrl());
@@ -73,7 +71,7 @@ public class MenuGenerator {
             ImageView img = new ImageView(act);
             img.setImageBitmap(bitmap);
             Button button = new Button(act);
-            buttonFormater.setParams(img, button, meals[assyncCounter++], act);
+            ButtonFormater buttonFormater = new ButtonFormater(img, button, meals[assyncCounter++], act);
             menu.addView(buttonFormater.extractButton());
         }
 
