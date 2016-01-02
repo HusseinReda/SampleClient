@@ -28,8 +28,10 @@ public class OrdersGenerator {
     {
         ScrollView ordersContainer = new ScrollView(act);
         RelativeLayout.LayoutParams ordersContainerParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT
-                , RelativeLayout.LayoutParams.MATCH_PARENT );
+                , RelativeLayout.LayoutParams.MATCH_PARENT);
+        ordersContainerParams.setMargins(0,0,0,100);
         ordersContainer.setLayoutParams(ordersContainerParams);
+        //ordersContainer.setPadding(0,0,0,100);
 
         LinearLayout orders = new LinearLayout(act);
         orders.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.

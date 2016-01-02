@@ -31,7 +31,7 @@ public class HttpGetRequestActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        Button chefActivity = (Button) findViewById(R.id.chief_button);
+        Button chefActivity = (Button) findViewById(R.id.chef_button);
         chefActivity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
