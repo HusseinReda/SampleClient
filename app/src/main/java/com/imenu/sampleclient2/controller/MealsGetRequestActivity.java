@@ -57,15 +57,6 @@ public class MealsGetRequestActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Meal[] meals) {
             LinearLayout menuActivity = (LinearLayout) findViewById(R.id.activity_meals);
-            ArrayList<Meal> meals_mocked = new ArrayList<> ();
-            meals_mocked.add(new Meal ("Far5a",1)  );
-            meals_mocked.add(new Meal ("Batta",1)  );
-            meals_mocked.add(new Meal ("Wezza",1)  );
-            meals_mocked.add(new Meal ("Shawerma",1)  );
-            meals_mocked.add(new Meal ("btngana",1)  );
-            meals_mocked.add(new Meal ("Btngan ma7rooo2",1)  );
-            meals_mocked.add(new Meal ("Btngan maslooo2",1)  );
-            //Toast.makeText(getApplicationContext(), "el length"+meals.length, Toast.LENGTH_LONG).show();
             MenuGenerator menuGenerator = new MenuGenerator(meals, (MealsGetRequestActivity) context) ;
             ScrollView menu = menuGenerator.getView();
             menuActivity.addView( menu);

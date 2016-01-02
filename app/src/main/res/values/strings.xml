@@ -2,5 +2,7 @@
     <string name="app_name">SampleClient2</string>
     <string name="url">http://imenu.elasticbeanstalk.com/</string>
     <string name="title_activity_main2">Main2Activity</string>
+    <string name="title_activity_check">CheckActivity</string>
+    <string name="title_activity_chef">ChefActivity</string>
 
 </resources>

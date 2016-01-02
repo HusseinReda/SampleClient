@@ -32,6 +32,15 @@ public class HttpGetRequestActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        Button chefActivity = (Button) findViewById(R.id.button);
+        chefActivity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context,ChefActivity.class  );
+                startActivity(intent);
+
+            }
+        });
     }
     private class HttpGetRequest extends AsyncTask<Void, Void, String> {
         @Override

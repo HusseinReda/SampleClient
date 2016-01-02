@@ -2,6 +2,7 @@ package com.imenu.sampleclient2.model;
 
 import com.imenu.sampleclient2.Global;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -10,17 +11,26 @@ import java.util.List;
 public class Order {
     private List<Meal> meals;
     private int tableNumber;
-    public Order(){
-        this.tableNumber=Global.getTableNumber();
+    private long id;
+    public void setId(long id) {
+        this.id = id;
     }
-    public Order(List<Meal> meals){
-        this.tableNumber=Global.getTableNumber();
-        this.meals=meals;
+    public void setTableNumber(int tableNumber) {
+        this.tableNumber = tableNumber;
     }
     public void setMeals(List<Meal> meals) {
         this.meals = meals;
     }
-    public List<Meal> getMeals() {
-        return meals;
+    public long getId() {
+        return id;
     }
+    public int getTableNumber (){return tableNumber;}
+    public List<Meal> getMeals (){return meals;}
+
+    public Order(){}
+    public Order( int tableNumber,List<Meal> meals){
+        this.tableNumber=tableNumber;
+        this.meals=meals;
+    }
+
 }

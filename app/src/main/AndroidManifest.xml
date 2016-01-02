@@ -17,11 +17,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".controller.MealsGetRequestActivity" />
         <activity
-            android:name=".controller.MealsGetRequestActivity">
-
-        </activity>
-
+            android:name=".controller.ChefActivity"
+            android:label="@string/title_activity_chef"
+           ></activity>
     </application>
 
 </manifest>

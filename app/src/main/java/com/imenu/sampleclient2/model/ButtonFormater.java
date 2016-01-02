@@ -19,6 +19,7 @@ import com.imenu.sampleclient2.Global;
 import com.imenu.sampleclient2.R;
 import com.imenu.sampleclient2.controller.MealsGetRequestActivity;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
@@ -50,12 +51,13 @@ public class ButtonFormater {
         button.setLayoutParams(buttonLayoutParams);
         button.setOnClickListener(new View.OnClickListener() {
             private Meal buttonMeal;
+
             @Override
             public void onClick(View v) {
-                ArrayList<Meal> meals= new ArrayList<Meal>();
+                ArrayList<Meal> meals = new ArrayList<Meal>();
                 meals.add(meal);
-                Order order = new Order(meals);
-                new OrderPostRequestTask().execute( order );
+                Order order = new Order( 0,meals);
+                new OrderPostRequestTask().execute(order);
             }
         });
         LinearLayout mainLayout = new LinearLayout(act);
@@ -76,14 +78,12 @@ public class ButtonFormater {
             RestTemplate restTemplate = new RestTemplate();
             restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
             restTemplate.getMessageConverters().add(new StringHttpMessageConverter());
-
             String response = restTemplate.postForObject(url, order, String.class);
-               return response;
-          //  return url;
+            return response;
         }
         @Override
         protected void onPostExecute(String result) {
-//            Toast.makeText(act, result, Toast.LENGTH_LONG).show();
+//            Toast.makeText(act,result, Toast.LENGTH_LONG).show();
         }
     }
 }

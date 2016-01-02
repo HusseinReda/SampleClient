@@ -1,5 +1,4 @@
 package com.imenu.sampleclient2.model;
-
 /**
  * Created by __Hussein__ on 12/29/2015.
  */
@@ -23,7 +22,6 @@ public class Meal {
     public long getPrice() {
         return price;
     }
-
     public String getImageUrl() {
         return imageUrl;
     }
