@@ -27,8 +27,17 @@ public class HttpGetRequestActivity extends AppCompatActivity {
         sendingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context,TableNumbersActivity.class);
+                Intent intent = new Intent(context, TableNumbersActivity.class);
                 startActivity(intent);
+            }
+        });
+        Button chefActivity = (Button) findViewById(R.id.chief_button);
+        chefActivity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context,ChefActivity.class  );
+                startActivity(intent);
+
             }
         });
     }
