@@ -56,7 +56,7 @@ public class ButtonFormater {
             public void onClick(View v) {
                 ArrayList<Meal> meals = new ArrayList<Meal>();
                 meals.add(meal);
-                Order order = new Order( 0,meals);
+                Order order = new Order( Global.getTableNumber(),meals);
                 new OrderPostRequestTask().execute(order);
             }
         });
