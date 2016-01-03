@@ -27,9 +27,9 @@
         android:layout_height="wrap_content"
         android:text="2"
         android:id="@+id/table_2"
-        android:layout_alignBottom="@+id/table_1"
-        android:layout_centerHorizontal="true"
-        android:onClick="ButtonOnClick"/>
+        android:onClick="ButtonOnClick"
+        android:layout_alignTop="@+id/table_1"
+        android:layout_centerHorizontal="true" />
 
     <Button
         style="?android:attr/buttonStyleSmall"
@@ -48,10 +48,10 @@
         android:layout_height="wrap_content"
         android:text="4"
         android:id="@+id/table_4"
-        android:layout_alignParentStart="true"
+        android:onClick="ButtonOnClick"
         android:layout_below="@+id/table_1"
         android:layout_alignParentLeft="true"
-        android:onClick="ButtonOnClick"/>
+        android:layout_alignParentStart="true" />
 
     <Button
         style="?android:attr/buttonStyleSmall"
@@ -59,9 +59,9 @@
         android:layout_height="wrap_content"
         android:text="5"
         android:id="@+id/table_5"
+        android:onClick="ButtonOnClick"
         android:layout_below="@+id/table_2"
-        android:layout_centerHorizontal="true"
-        android:onClick="ButtonOnClick"/>
+        android:layout_centerHorizontal="true" />
 
     <Button
         style="?android:attr/buttonStyleSmall"

@@ -44,7 +44,7 @@ public class ButtonFormater {
         this.imageView = imageView;
     }
     public LinearLayout extractButton(){
-        LinearLayout.LayoutParams buttonLayoutParams  = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,370);
+        LinearLayout.LayoutParams buttonLayoutParams  = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,110);
         buttonLayoutParams.setMargins(0, 10, 0, 10);
         button.setText(Html.fromHtml("<h3>" + meal.getName() + "</h3>" +
                 "&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;" + meal.getPrice() + " LE"));
@@ -62,8 +62,8 @@ public class ButtonFormater {
         });
         LinearLayout mainLayout = new LinearLayout(act);
         mainLayout.setOrientation(LinearLayout.HORIZONTAL);
-        LinearLayout.LayoutParams mainLayoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 400 );
-        LinearLayout.LayoutParams imageViewParams  = new LinearLayout.LayoutParams(400,400);
+        LinearLayout.LayoutParams mainLayoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 150 );
+        LinearLayout.LayoutParams imageViewParams  = new LinearLayout.LayoutParams(150,150);
         imageViewParams.setMargins(0,0,0,20);
         imageView.setLayoutParams( imageViewParams);
         mainLayout.addView(imageView);
